@@ -709,7 +709,7 @@ textarea {
 .modal-checkbox:checked + .modal-checkbox-label .custom-checkbox {
   border: none;
   fill: var(--text-light-secondary-color);
-  background-color: var(--accent-color);
+  background-color: var(--hover-color);
 }
 
 .modal-checkbox-label {
