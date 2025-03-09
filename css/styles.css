@@ -578,6 +578,7 @@ textarea {
   right: 24px;
   width: 24px;
   height: 24px;
+  padding: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -700,26 +701,15 @@ textarea {
   justify-content: center;
   border-radius: 2px;
   transition: background-color var(--transition-config),
-    border var(--transition-config);
-
+    border var(--transition-config), fill var(--transition-config);
   cursor: pointer;
-}
-
-.checkbox-icon {
   fill: transparent;
-  transition: opacity var(--transition-config);
 }
 
 .modal-checkbox:checked + .modal-checkbox-label .custom-checkbox {
   border: none;
-  background-color: var(--accent-color);
-}
-
-.modal-checkbox:checked
-  + .modal-checkbox-label
-  .custom-checkbox
-  .checkbox-icon {
   fill: var(--text-light-secondary-color);
+  background-color: var(--accent-color);
 }
 
 .modal-checkbox-label {
