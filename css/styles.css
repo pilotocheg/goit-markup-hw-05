@@ -491,6 +491,10 @@ textarea {
 
 .subscribe-form {
   display: flex;
+  gap: 24px;
+}
+
+.subscribe-input-label {
 }
 
 .subscribe-input {
@@ -503,9 +507,8 @@ textarea {
   background-color: transparent;
   height: 40px;
   padding: 0 16px;
-  flex: 1;
+  width: 264px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-  margin-right: 24px;
 }
 
 .subscribe-input::placeholder {
@@ -520,11 +523,13 @@ textarea {
   vertical-align: middle;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  min-width: 165px;
 }
 
 .subscribe-icon {
   fill: var(--text-light-color);
+  margin-left: 16px;
 }
 
 /* modal styles */
@@ -538,13 +543,11 @@ textarea {
   width: 100%;
   height: 100%;
   z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--transition-config);
+  transition: opacity var(--transition-config),
+    visibility var(--transition-config);
 }
 
 .modal-overlay.is-open {
@@ -555,20 +558,24 @@ textarea {
 .modal {
   background-color: var(--modal-bg-color);
   border-radius: 4px;
-  padding: 24px;
-  box-shadow: var(--card-box-shadow);
+  padding: 72px 24px 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
   width: 408px;
   max-height: 80%;
   overflow-y: auto;
-}
-
-.close-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: var(--transform-transition);
+  min-height: 584px;
 }
 
 .modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -577,8 +584,7 @@ textarea {
   justify-content: center;
   background-color: var(--border-color-1);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: var(--background-transition),
-    border-color var(--transition-config);
+  transition: var(--background-transition), border var(--transition-config);
 }
 
 .close-icon {
@@ -589,6 +595,7 @@ textarea {
 .modal-close-btn:hover,
 .modal-close-btn:focus {
   background-color: var(--hover-color);
+  border: none;
 }
 .modal-close-btn:hover .close-icon,
 .modal-close-btn:focus .close-icon {
@@ -607,26 +614,32 @@ textarea {
   flex-direction: column;
 }
 
+.modal-input-container {
+  margin-bottom: 8px;
+}
+
 .modal-input-label {
   display: block;
   font-size: 12px;
-  line-height: 1.15;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
   margin-bottom: 4px;
   color: var(--border-color-2);
 }
 
 .modal-input-wrapper {
   position: relative;
-  margin-bottom: 8px;
 }
 
 .modal-input {
   border: 1px solid var(--modal-overlay);
   border-radius: 4px;
+  background-color: transparent;
   transition: border-color var(--transition-config);
   font-size: 14px;
   line-height: 1.15;
   letter-spacing: 0.04em;
+  outline: transparent;
 }
 
 .modal-input::placeholder {
@@ -657,12 +670,19 @@ textarea {
   fill: var(--accent-color);
 }
 
+.text-area-container {
+  margin-bottom: 16px;
+}
+
 .textarea-input {
   width: 100%;
   height: 120px;
-  padding: 8px 16px 0;
+  padding: 8px 16px;
   resize: none;
-  margin-bottom: 16px;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: var(--modal-overlay);
 }
 
 .modal-checkbox-container {
@@ -675,38 +695,36 @@ textarea {
   width: 16px;
   height: 16px;
   border: 1px solid var(--modal-overlay);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-  transition: border-color var(--transition-config),
-    background-color var(--transition-config);
+  transition: background-color var(--transition-config),
+    border var(--transition-config);
+
   cursor: pointer;
 }
 
-.modal-checkbox {
-  display: none;
-}
-
 .checkbox-icon {
-  fill: var(--text-light-secondary-color);
+  fill: transparent;
   transition: opacity var(--transition-config);
-  opacity: 0;
 }
 
-.modal-checkbox:checked + .custom-checkbox {
-  border-color: var(--accent-color);
+.modal-checkbox:checked + .modal-checkbox-label .custom-checkbox {
+  border: none;
   background-color: var(--accent-color);
 }
 
-.modal-checkbox:checked + .custom-checkbox .checkbox-icon {
-  opacity: 1;
+.modal-checkbox:checked
+  + .modal-checkbox-label
+  .custom-checkbox
+  .checkbox-icon {
+  fill: var(--text-light-secondary-color);
 }
 
-.modal-checkbox-text {
+.modal-checkbox-label {
   font-size: 12px;
-  line-height: 1.34;
-  margin-left: 8px;
+  line-height: 1.17;
   letter-spacing: 0.04em;
   color: var(--border-color-2);
 }
@@ -718,6 +736,7 @@ textarea {
 }
 
 .modal-submit-btn {
-  width: 169px;
+  display: block;
+  min-width: 169px;
   align-self: center;
 }
